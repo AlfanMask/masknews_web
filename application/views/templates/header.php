@@ -78,7 +78,7 @@
           </div>
 
           <div class="col-4 site-logo">
-            <a href="<?= base_url() ?>" class="text-black h2 mb-0"><b class="logo-mask">Mask</b><span class="logo-news"> News</span> <b class="text-primary logo-dot">.</b></a>
+            <a href="<?= base_url() ?>" class="text-black h2 mb-0"><b class="logo-mask">Mask</b><span class="logo-news"> Blog</span> <b class="text-primary logo-dot">.</b></a>
           </div>
 
           <div class="col-8 text-right">

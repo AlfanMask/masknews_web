@@ -35,18 +35,6 @@ class Dashboard extends CI_Controller{
             $last_index = ($total_data - 1);
         }
 
-        // $data_page
-
-        // $tes_pagination = [
-        //     'total_data'    => $total_data,
-        //     'data_perpage'  => $data_perpage,
-        //     'total_pages'   => $total_pages,
-        //     'first_index'   => $first_index,
-        //     'last_index'    => $last_index
-        // ];
-
-        // var_dump($tes_pagination); die();
-
         $data['idp']                = $idp;
         $data['total_pages']        = $total_pages;
         $data['first_num']          = $first_index + 1;
@@ -340,38 +328,3 @@ class Dashboard extends CI_Controller{
     }
 
 }
-
-// setup pagination
-        // $blogs_count            = $this->model_blog->get_all_blog('tb_blog')->num_rows();
-        // $config['base_url']     = base_url('dashboard/index');
-        // $config['total_rows']   = $blogs_count;
-        // $config['per_page']     = 5;
-        // $from                   = $this->uri->segment(3);
-        
-
-        // // Membuat Style pagination untuk BootStrap v4
-        // $config['first_link']       = 'First';
-        // $config['last_link']        = 'Last';
-        // $config['next_link']        = 'Next';
-        // $config['prev_link']        = 'Prev';
-        // $config['full_tag_open']    = '<nav aria-label="Page navigation example"><ul class="pagination">';
-        // $config['full_tag_close']   = '</ul></nav>';
-        // $config['num_tag_open']     = '<li class="page-item"><a class="page-link" href="#">';
-        // $config['num_tag_close']    = '</a></li>';
-        // $config['cur_tag_open']     = '<li class="page-item"><a class="page-link" href="#">';
-        // $config['cur_tag_close']    = '</a></li>';
-        // $config['next_tag_open']    = '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span>';
-        // $config['next_tagl_close']  = '</a></li>';
-        // $config['prev_tag_open']    = '<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;';
-        // $config['prev_tagl_close']  = '</a></li>';
-        // $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-        // $config['first_tagl_close'] = '</span></li>';
-        // $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-        // $config['last_tagl_close']  = '</span></li>';
-
-        // $this->pagination->initialize($config);
-
-        // $data['pagination']     = $this->pagination->create_links();    
-
-        // // get blog datas
-        // $data['blogs'] = $this->model_blog->get_all_blog_pagination('tb_blog',$config['per_page'],$from)->result_array();

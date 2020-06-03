@@ -46,7 +46,7 @@ class Auth extends CI_Controller{
         } else {
             // put datas
             $data = [
-                'id'        => '',
+                'id'        => null,
                 'username'  => $username,
                 'email'     => $email,
                 'password'  => $password_1,
