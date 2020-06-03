@@ -21,10 +21,6 @@ class Profile extends CI_Controller{
 	
 	}
 
-	public function changeImage(){
-
-	}
-
 	public function updateProfile(){
 		// get input datas
 		$id 				= $this->input->post('id');
