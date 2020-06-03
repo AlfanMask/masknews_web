@@ -1,6 +1,6 @@
 <style type="text/css">
   
-  /* UBAH Recent Posts */
+  /* Recent Posts */
   .entry2 img{
       height:250px;
       width:100%;
