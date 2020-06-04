@@ -16,11 +16,11 @@
               <li><a href="#">Subscribes</a></li>
             </ul>
             <ul class="list-unstyled float-left">
-              <li><a href="<?= base_url('category/politic') ?>">Politic</a></li>
-              <li><a href="<?= base_url('category/tech') ?>">Tech</a></li>
-              <li><a href="<?= base_url('category/entertainment') ?>">Entertainment</a></li>
-              <li><a href="<?= base_url('category/travel') ?>">Travel</a></li>
-              <li><a href="<?= base_url('category/sport') ?>">Sport</a></li>
+              <li><a href="<?= base_url('category/politic/1') ?>">Politic</a></li>
+              <li><a href="<?= base_url('category/tech/1') ?>">Tech</a></li>
+              <li><a href="<?= base_url('category/entertainment/1') ?>">Entertainment</a></li>
+              <li><a href="<?= base_url('category/travel/1') ?>">Travel</a></li>
+              <li><a href="<?= base_url('category/sport/1') ?>">Sport</a></li>
             </ul>
           </div>
           <div class="col-md-4">

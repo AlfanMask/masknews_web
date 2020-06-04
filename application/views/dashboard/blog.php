@@ -662,11 +662,11 @@
                   }
                 ?>
 
-                <li><a href="<?= base_url('category/politic') ?>">Politic <span>(<?= $politic ?>)</span></a></li>
-                <li><a href="<?= base_url('category/tech') ?>">Tech <span>(<?= $tech ?>)</span></a></li>
-                <li><a href="<?= base_url('category/entertainment') ?>">Entertainment <span>(<?= $entertainment ?>)</span></a></li>
-                <li><a href="<?= base_url('category/travel') ?>">Travel <span>(<?= $travel ?>)</span></a></li>
-                <li><a href="<?= base_url('category/sport') ?>">Sport <span>(<?= $sport ?>)</span></a></li>
+                <li><a href="<?= base_url('category/politic/1') ?>">Politic <span>(<?= $politic ?>)</span></a></li>
+                <li><a href="<?= base_url('category/tech/1') ?>">Tech <span>(<?= $tech ?>)</span></a></li>
+                <li><a href="<?= base_url('category/entertainment/1') ?>">Entertainment <span>(<?= $entertainment ?>)</span></a></li>
+                <li><a href="<?= base_url('category/travel/1') ?>">Travel <span>(<?= $travel ?>)</span></a></li>
+                <li><a href="<?= base_url('category/sport/1') ?>">Sport <span>(<?= $sport ?>)</span></a></li>
               </ul>
             </div>
           
