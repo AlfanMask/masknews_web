@@ -15,6 +15,7 @@ class Model_user extends CI_Model{
     }
 
     public function getAdmin($table,$role){
+        $this->db->select('username');
     	$this->db->where('role',$role);
     	return $this->db->get($table);
     }

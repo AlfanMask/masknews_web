@@ -2,8 +2,6 @@
 
 class Blog extends CI_Controller{
 
-    // public $current_blog;
-
     public function __construct(){
       parent::__construct();
 
@@ -29,7 +27,12 @@ class Blog extends CI_Controller{
       $data['blog_headers']     = $this->model_blog->get_blog_headers('tb_blog');
       $data['parent_comments']  = $this->model_blog->get_all_comments_by_status('tb_komen','0',$id)->result_array(); 
       $data['child_comments']   = $this->model_blog->get_all_comments('tb_komen',$id)->result_array();
-      $data['user_role_admin']  = $this->model_user->getAdmin('tb_user','1')->result_array();      
+      $user_role_admin = (array) $this->model_user->getAdmin('tb_user','1')->result_array();      
+
+      $data['user_role_admin'] = array();
+      foreach ($user_role_admin as $admin) {
+        array_push($data['user_role_admin'],$admin['username']);
+      }
 
       // sort popular posts
       $views = array();

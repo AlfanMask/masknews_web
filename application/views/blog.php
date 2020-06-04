@@ -364,25 +364,31 @@
                         
                         <!-- if admin -> can delete comment -->
                         <?php if($this->session->userdata('role') == '1') : ?>
-                          <!-- comment admin -->
-                          <?php foreach($user_role_admin as $admin) : ?>
-                            <?php if($parent_comment['komen_nama'] == $admin['username']) : ?>
-                              <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $parent_comment['komen_nama']; ?></h3><a class="btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                              <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
-                            <?php else : ?>
-                              <h3 style="display: inline"><?= $parent_comment['komen_nama']; ?></h3>
-                              <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
-                            <?php endif; ?>
-                          <?php endforeach; ?>
+
+                          <!-- if admins contain current parent_comment name -->
+                          <?php if(in_array($parent_comment['komen_nama'], $user_role_admin)) : ?>
+
+                            <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $parent_comment['komen_nama']; ?></h3><a class="btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
+                            <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
+                            
+                          <?php else : ?>
+
+                            <h3 style="display: inline"><?= $parent_comment['komen_nama']; ?></h3>
+                            <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
+                            
+                          <?php endif; ?>
+
                         <?php else : ?>
-                          <!-- comment admin -->
-                          <?php foreach($user_role_admin as $admin) : ?>
-                            <?php if($parent_comment['komen_nama'] == $admin['username']) : ?>
-                              <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $parent_comment['komen_nama']; ?></h3><a class="btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                            <?php else : ?>
-                              <h3 style="display: inline"><?= $parent_comment['komen_nama']; ?></h3>
-                            <?php endif; ?>
-                          <?php endforeach; ?>
+                          <!-- if admins contain current parent_comment name -->
+                          <?php if(in_array($parent_comment['komen_nama'], $user_role_admin)) : ?>
+                            
+                            <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $parent_comment['komen_nama']; ?></h3><a class="btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
+                            
+                          <?php else : ?>
+
+                            <h3 style="display: inline"><?= $parent_comment['komen_nama']; ?></h3>
+                            
+                          <?php endif; ?>
                         <?php endif; ?>
 
                         <div class="meta comment-date"><p><?= $parent_comment['komen_waktu']; ?></p></div>
@@ -459,25 +465,31 @@
                               
                               <!-- if admin -> can delete comment -->
                               <?php if($this->session->userdata('role') == '1') : ?>
-                                <!-- comment admin -->
-                                <?php foreach($user_role_admin as $admin) : ?>
-                                  <?php if($child['komen_nama'] == $admin['username']) : ?>
-                                    <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $child['komen_nama']; ?></h3><a class="reply-author btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                                    <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
-                                  <?php else : ?>
-                                    <h3 style="display: inline"><?= $child['komen_nama']; ?></h3>
-                                    <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
+
+                                <!-- if admins contain current parent_comment name -->
+                                <?php if(in_array($child['komen_nama'], $user_role_admin)) : ?>
+
+                                  <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $child['komen_nama']; ?></h3><a class="reply-author btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
+                                  <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
+                                  
+                                <?php else : ?>
+
+                                  <h3 style="display: inline"><?= $child['komen_nama']; ?></h3>
+                                  <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
+                                  
+                                <?php endif; ?>
+
                               <?php else : ?>
-                                <!-- comment admin -->
-                                <?php foreach($user_role_admin as $admin) : ?>
-                                  <?php if($child['komen_nama'] == $admin['username']) : ?>
-                                    <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $child['komen_nama']; ?></h3><a class="reply-author btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                                  <?php else : ?>
-                                    <h3 style="display: inline"><?= $child['komen_nama']; ?></h3>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
+                                <!-- if admins contain current parent_comment name -->
+                                <?php if(in_array($child['komen_nama'], $user_role_admin)) : ?>
+                                  
+                                  <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $child['komen_nama']; ?></h3><a class="reply-author btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
+                                  
+                                <?php else : ?>
+
+                                  <h3 style="display: inline"><?= $child['komen_nama']; ?></h3>
+                                  
+                                <?php endif; ?>
                               <?php endif; ?>
                               
                               <div class="meta reply-post-date"><p><?= $child['komen_waktu']; ?></p></div>
