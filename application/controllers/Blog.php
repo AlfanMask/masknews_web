@@ -154,15 +154,15 @@ class Blog extends CI_Controller{
 
     } // end addChildComment
 
-    public function deleteChildComment($komen_id){
-      $this->model_blog->deleteChildComment('tb_komen',$komen_id);
-      redirect('');
+    public function deleteParentComment($komen_id,$blog_id){
+      $this->model_blog->deleteParentComment('tb_komen',$komen_id);
+      redirect(base_url('blog/article/'.$blog_id));
 
     }
 
-     public function deleteParentComment($komen_id){
-      $this->model_blog->deleteParentComment('tb_komen',$komen_id);
-      redirect('');
+    public function deleteChildComment($komen_id,$blog_id){
+      $this->model_blog->deleteChildComment('tb_komen',$komen_id);
+      redirect(base_url('blog/article/'.$blog_id));
 
     }
 

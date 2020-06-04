@@ -154,7 +154,13 @@ class Dashboard extends CI_Controller{
         $data['blog_headers']     = $this->model_blog->get_blog_headers('tb_blog');
         $data['parent_comments']  = $this->model_blog->get_all_comments_by_status('tb_komen','0',$id)->result_array(); 
         $data['child_comments']   = $this->model_blog->get_all_comments('tb_komen',$id)->result_array();
-        $data['user_role_admin']  = $this->model_user->getAdmin('tb_user','1')->result_array();      
+        $user_role_admin = (array) $this->model_user->getAdmin('tb_user','1')->result_array();   
+
+        $data['user_role_admin'] = array();
+        foreach ($user_role_admin as $admin) {
+          array_push($data['user_role_admin'],$admin['username']);
+        }
+
 
         // popular posts
         $data['blogs'] = $this->model_blog->get_all_blog('tb_blog')->result_array();
@@ -326,5 +332,18 @@ class Dashboard extends CI_Controller{
             redirect(base_url('dashboard'));
         }
     }
+
+    public function deleteParentComment($komen_id,$blog_id){
+      $this->model_blog->deleteParentComment('tb_komen',$komen_id);
+      redirect(base_url('dashboard/view/'.$blog_id));
+
+    }
+
+    public function deleteChildComment($komen_id,$blog_id){
+      $this->model_blog->deleteChildComment('tb_komen',$komen_id);
+      redirect(base_url('dashboard/view/'.$blog_id));
+
+    }
+
 
 }

@@ -369,12 +369,12 @@
                           <?php if(in_array($parent_comment['komen_nama'], $user_role_admin)) : ?>
 
                             <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $parent_comment['komen_nama']; ?></h3><a class="btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                            <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
+                            <a href="<?= base_url('blog/deleteParentComment/'.$parent_comment['komen_id'].'/'.$id) ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
                             
                           <?php else : ?>
 
                             <h3 style="display: inline"><?= $parent_comment['komen_nama']; ?></h3>
-                            <a href="<?= base_url('blog/deleteParentComment/').$parent_comment['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
+                            <a href="<?= base_url('blog/deleteParentComment/'.$parent_comment['komen_id'].'/'.$id) ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
                             
                           <?php endif; ?>
 
@@ -470,12 +470,12 @@
                                 <?php if(in_array($child['komen_nama'], $user_role_admin)) : ?>
 
                                   <h3 style="color:#2286c3;display: inline;font-weight: bold;"><?= $child['komen_nama']; ?></h3><a class="reply-author btn-primary" style="color:white; padding:5px 15px;margin-left:20px;">Author</a>
-                                  <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
+                                  <a href="<?= base_url('blog/deleteChildComment/'.$child['komen_id'].'/'.$id) ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#2286c3;">&#x1F5D1</a>
                                   
                                 <?php else : ?>
 
                                   <h3 style="display: inline"><?= $child['komen_nama']; ?></h3>
-                                  <a href="<?= base_url('blog/deleteChildComment/').$child['komen_id'] ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
+                                  <a href="<?= base_url('blog/deleteChildComment/'.$child['komen_id'].'/'.$id) ?>" onclick="return confirm('Are you sure want to delete this comment?')" style="float:right;color:#777;">&#x1F5D1</a>
                                   
                                 <?php endif; ?>
 
