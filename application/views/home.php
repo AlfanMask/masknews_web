@@ -239,7 +239,7 @@
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
             
-            <button href="" class="btn btn-primary" onclick="loadMore()">Load More</button>
+            <button href="" id="load-more" class="btn btn-primary" onclick="loadMore()">Load More</button>
 
           </div>
         </div>
@@ -321,12 +321,18 @@
 
   function loadMore(){
 
+    // set #load-more text to loading
+    $('#load-more').html('Loading...');
+
     $.ajax({
       type: 'POST',
       url: '<?= base_url('home/loadMore/') ?>' + load_more_index,
       dataType: 'json',
       success: function(data){
         
+        // set #load-more text (from: loading) to "load more"
+        $('#load-more').html('Load More');
+
         let category_color_0;
         let category_color_1;
         let category_color_2;
