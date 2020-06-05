@@ -7,6 +7,7 @@ class Category extends CI_Controller{
 
         // loads
         $this->load->model('model_blog');
+        $this->load->model('model_user');
 
     }
 
@@ -20,7 +21,8 @@ class Category extends CI_Controller{
     public function politic($idp){
         // load politic blogs
         $data['blogs'] = $this->model_blog->get_blog_by_category('tb_blog','Politic');
-
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();   
+        
         // setup pagination        
         $total_data     = sizeof($data['blogs']);
         $data_perpage   = 6;
@@ -40,6 +42,15 @@ class Category extends CI_Controller{
         $data['blogs_pagination']   = array();
         for($i = $first_index; $i <= $last_index; $i++){
             array_push($data['blogs_pagination'],$data['blogs'][$i]);
+        }
+
+        // add each blog post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($data['blogs_pagination']); $i++){
+            if($data['blogs_pagination'][$i]['writer'] == $admin['username']){
+              $data['blogs_pagination'][$i]['image_writer'] = $admin['image'];
+            }
+          }
         }
 
         // load views
@@ -52,6 +63,7 @@ class Category extends CI_Controller{
     public function tech($idp){
         // load politic blogs
         $data['blogs'] = $this->model_blog->get_blog_by_category('tb_blog','Tech');
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
         // setup pagination        
         $total_data     = sizeof($data['blogs']);
@@ -72,6 +84,15 @@ class Category extends CI_Controller{
         $data['blogs_pagination']   = array();
         for($i = $first_index; $i <= $last_index; $i++){
             array_push($data['blogs_pagination'],$data['blogs'][$i]);
+        }
+
+        // add each blog post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($data['blogs_pagination']); $i++){
+            if($data['blogs_pagination'][$i]['writer'] == $admin['username']){
+              $data['blogs_pagination'][$i]['image_writer'] = $admin['image'];
+            }
+          }
         }
 
         // load views
@@ -84,6 +105,7 @@ class Category extends CI_Controller{
     public function entertainment($idp){
         // load politic blogs
         $data['blogs'] = $this->model_blog->get_blog_by_category('tb_blog','Entertainment');
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
         // setup pagination        
         $total_data     = sizeof($data['blogs']);
@@ -104,6 +126,15 @@ class Category extends CI_Controller{
         $data['blogs_pagination']   = array();
         for($i = $first_index; $i <= $last_index; $i++){
             array_push($data['blogs_pagination'],$data['blogs'][$i]);
+        }
+
+        // add each blog post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($data['blogs_pagination']); $i++){
+            if($data['blogs_pagination'][$i]['writer'] == $admin['username']){
+              $data['blogs_pagination'][$i]['image_writer'] = $admin['image'];
+            }
+          }
         }
 
         // load views
@@ -116,6 +147,7 @@ class Category extends CI_Controller{
     public function travel($idp){
         // load politic blogs
         $data['blogs'] = $this->model_blog->get_blog_by_category('tb_blog','Travel');
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
         // setup pagination        
         $total_data     = sizeof($data['blogs']);
@@ -136,6 +168,15 @@ class Category extends CI_Controller{
         $data['blogs_pagination']   = array();
         for($i = $first_index; $i <= $last_index; $i++){
             array_push($data['blogs_pagination'],$data['blogs'][$i]);
+        }
+
+        // add each blog post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($data['blogs_pagination']); $i++){
+            if($data['blogs_pagination'][$i]['writer'] == $admin['username']){
+              $data['blogs_pagination'][$i]['image_writer'] = $admin['image'];
+            }
+          }
         }
 
         // load views
@@ -148,6 +189,7 @@ class Category extends CI_Controller{
     public function sport($idp){
         // load politic blogs
         $data['blogs'] = $this->model_blog->get_blog_by_category('tb_blog','Sport');
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
         // setup pagination        
         $total_data     = sizeof($data['blogs']);
@@ -168,6 +210,15 @@ class Category extends CI_Controller{
         $data['blogs_pagination']   = array();
         for($i = $first_index; $i <= $last_index; $i++){
             array_push($data['blogs_pagination'],$data['blogs'][$i]);
+        }
+
+        // add each blog post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($data['blogs_pagination']); $i++){
+            if($data['blogs_pagination'][$i]['writer'] == $admin['username']){
+              $data['blogs_pagination'][$i]['image_writer'] = $admin['image'];
+            }
+          }
         }
 
         // load views

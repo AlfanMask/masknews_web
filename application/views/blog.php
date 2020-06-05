@@ -321,7 +321,7 @@
 
               <h1 class="mb-4"><a href="#" class="post-title"><?= $blog['title'] ?></a></h1>
               <div class="post-meta align-items-center text-center">
-                <?= '<figure class="author-figure mb-0 mr-3 d-inline-block"><img src="'.base_url().'assets/images/'.$blog['writer'].'.jpg'.'" alt="Image" class="img-fluid"></figure>' ?> 
+                <?= '<figure class="author-figure mb-0 mr-3 d-inline-block"><img src="'.base_url().'uploads/admins/'.$writer.'" alt="Image" class="img-fluid"></figure>' ?> 
                 <span class="post-writer d-inline-block mt-1">By <?= $blog['writer'] ?></span>
                 <span class="post-date">&nbsp;-&nbsp; <?= $blog['date'] ?></span>
               </div>

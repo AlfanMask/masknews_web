@@ -7,6 +7,7 @@ class Home extends CI_Controller{
 
         // loads
         $this->load->model('model_blog');
+        $this->load->model('model_user');
 
     }
     
@@ -14,6 +15,7 @@ class Home extends CI_Controller{
         // load blogs
         $data['blog_headers']    = $this->model_blog->get_blog_headers('tb_blog');
         $data['blogs']           = $this->model_blog->get_all_blog('tb_blog')->result_array();
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
         // sort recent posts
         $recents = array();
@@ -27,6 +29,20 @@ class Home extends CI_Controller{
         for($i = 0; $i < 6; $i++){
           array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recents[$i]));
         }
+
+        // convert obj to array
+        $data['recents'] = json_decode(json_encode($data['recents']),true);
+        // add each recent post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < 6; $i++){
+            if($data['recents'][$i]['writer'] == $admin['username']){
+              $data['recents'][$i]['image_writer'] = $admin['image'];
+            }
+
+          }
+
+        }
+
         // end of sorting posts
 
         $this->load->view('templates/header');
@@ -37,6 +53,7 @@ class Home extends CI_Controller{
 
     public function loadMore($load_more_index){
         $data['blogs'] = $this->model_blog->get_all_blog('tb_blog')->result_array();
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();   
 
         // sort recent posts
         $recents = array();
@@ -91,6 +108,22 @@ class Home extends CI_Controller{
             } 
         }
         
+        // convert obj to array
+        $data['recents'] = json_decode(json_encode($data['recents']),true);
+        // add each recent post with writer image
+        foreach ($user_role_admin_allfield as $admin) {
+          for($i = 0; $i < sizeof($recent_more); $i++){
+            if($data['recents'][$i]['writer'] == $admin['username']){
+              $data['recents'][$i]['image_writer'] = $admin['image'];
+            }
+
+          }
+
+        }
+
+        // convert array to obj
+        $data['recents'] = json_decode(json_encode($data['recents']),false);
+
         // end of sorting posts
 
         echo json_encode($data['recents']);

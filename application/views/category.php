@@ -154,7 +154,7 @@
 
                 <h2><a class="post-title" href="<?= base_url('blog/article/').$blog['id'] ?>"><?= $blog['title'] ?></a></h2>
                 <div class="post-meta align-items-center text-left clearfix">
-                  <figure class="author-figure mb-0 mr-3 float-left"><img src="<?=base_url('assets/images/').$blog['writer'].'.jpg' ?>" alt="Image" class="img-fluid" style="height:100%;"></figure>
+                  <figure class="author-figure mb-0 mr-3 float-left"><img src="<?=base_url('uploads/admins/').$blog['image_writer'] ?>" alt="Image" class="img-fluid" style="height:100%;"></figure>
                   <span class="d-inline-block mt-1">By <a href="#"><?= $blog['writer'] ?></a></span>
                   <span>&nbsp;-&nbsp; <?= $blog['date'] ?></span>
                 </div>
