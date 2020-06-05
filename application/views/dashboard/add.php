@@ -20,7 +20,7 @@
 					<?php if(!$this->session->flashdata('add_blog')==null){echo $this->session->flashdata('add_blog');} ?>
 				</div>
 				<div class="form-group col-lg-12 col-md-12">
-					<textarea name="article" required id="article" placeholder="Write your article here..." id="article" rows="10" style="width:100%"><?php if(!$this->session->flashdata('article_blog') == null) {echo $this->session->flashdata('article_blog');}?></textarea>
+					<textarea name="article" required id="article" placeholder="Write your article here..." rows="10" style="width:100%"><?php if(!$this->session->flashdata('article_blog') == null) {echo $this->session->flashdata('article_blog');}?></textarea>
 					<?= form_error('article','<p class="text-danger">','</p>') ?>
 				</div>
 				<div class="form-group col-lg-6 col-md-6">

@@ -560,10 +560,10 @@
             <!-- END sidebar-box -->
             <div class="sidebar-box">
               <div class="bio text-center">
-                <?= '<img src="'.base_url().'assets/images/'.$blog['writer'].'.jpg'.'" alt="Image Placeholder" class="img-fluid mt-4 mb-2">' ?>
+                <?= '<img src="'.base_url().'uploads/admins/'.$writer.'" alt="'.base_url().'uploads/admins/'.$writer.'" class="img-fluid mt-4 mb-2">' ?>
                 <div class="bio-body">
                   <h2><?= $blog['writer'] ?></h2>
-                  <p class="mb-4">I'm a coding enthusiast and a graphic designer. I also like to write articles and news on Mask News website, which is my own website.</p>
+                  <p class="mb-4"><?= $bio_desc ?></p>
 
                   <p><!-- Button trigger modal - Read My Bio -->
                     <a href="#" class="btn btn-primary btn-sm rounded px-4 py-2 btn-modal-bio" data-toggle="modal" data-target="#modal-bio">
@@ -582,10 +582,24 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <p  style="float:left;">Name    : Alfan Hidayat (Alfan Mask)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                          <p  style="float:left;">Age     : 19 Years Old</p>
-                          <p  style="float:left;">Address : Temanggung Regency, Central Java, Indonesia</p>
-                          <p  style="float:left;">Hobby   : Coding Enthusiast and Graphic Design</p>
+                          <table style="text-align:left">
+                            <tr>
+                              <td>Name:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_name ?></td>
+                            </tr>
+                            <tr>
+                              <td>Age:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_age ?></td>
+                            </tr>
+                            <tr>
+                              <td>Address:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_address ?></td>
+                            </tr>
+                            <tr>
+                              <td>Hobby:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_hobby ?></td>
+                            </tr>
+                          </table>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

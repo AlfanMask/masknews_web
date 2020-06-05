@@ -20,6 +20,11 @@ class Model_user extends CI_Model{
     	return $this->db->get($table);
     }
 
+    public function getAdminAllFields($table,$role){
+        $this->db->where('role',$role);
+        return $this->db->get($table);
+    }
+
     public function getUserData($table,$id){
         $this->db->where('id',$id);
         return $this->db->get($table);

@@ -582,10 +582,24 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <p  style="float:left;">Name    : Alfan Hidayat (Alfan Mask)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                          <p  style="float:left;">Age     : 19 Years Old</p>
-                          <p  style="float:left;">Address : Temanggung Regency, Central Java, Indonesia</p>
-                          <p  style="float:left;">Hobby   : Coding Enthusiast and Graphic Design</p>
+                          <table style="text-align:left">
+                            <tr>
+                              <td>Name:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_name ?></td>
+                            </tr>
+                            <tr>
+                              <td>Age:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_age ?></td>
+                            </tr>
+                            <tr>
+                              <td>Address:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_address ?></td>
+                            </tr>
+                            <tr>
+                              <td>Hobby:</td>
+                              <td>&nbsp;&nbsp;<?= $bio_hobby ?></td>
+                            </tr>
+                          </table>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

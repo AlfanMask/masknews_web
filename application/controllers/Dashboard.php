@@ -155,12 +155,25 @@ class Dashboard extends CI_Controller{
         $data['parent_comments']  = $this->model_blog->get_all_comments_by_status('tb_komen','0',$id)->result_array(); 
         $data['child_comments']   = $this->model_blog->get_all_comments('tb_komen',$id)->result_array();
         $user_role_admin = (array) $this->model_user->getAdmin('tb_user','1')->result_array();   
+        $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();   
 
         $data['user_role_admin'] = array();
         foreach ($user_role_admin as $admin) {
           array_push($data['user_role_admin'],$admin['username']);
         }
 
+        // get writer image, desc, and bios
+        foreach($user_role_admin_allfield as $admin){
+          if($data['blog']['writer'] == $admin['username']){
+            $data['writer']       = $admin['image'];
+            $data['bio_name']     = $admin['bio_name'];
+            $data['bio_desc']     = $admin['bio_desc'];
+            $data['bio_age']      = $admin['bio_age'];
+            $data['bio_address']  = $admin['bio_address'];
+            $data['bio_hobby']    = $admin['bio_hobby'];
+          }
+
+        }
 
         // popular posts
         $data['blogs'] = $this->model_blog->get_all_blog('tb_blog')->result_array();
