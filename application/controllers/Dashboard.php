@@ -131,12 +131,12 @@ class Dashboard extends CI_Controller{
                         $this->session->set_flashdata('add_blog',
                             '<div class="badge badge-success mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Article Added Successfully!</h5></div>'
                         );
-                        redirect(base_url('dashboard'));
+                        redirect(base_url('dashboard/index/1'));
                     } else {
                         $this->session->set_flashdata('add_blog',
                             '<div class="badge badge-danger mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Failed to Add Article!</h5></div>'
                         );
-                        redirect(base_url('dashboard'));
+                        redirect(base_url('dashboard/index/1'));
                     }
 
                 }
@@ -312,12 +312,12 @@ class Dashboard extends CI_Controller{
                     $this->session->set_flashdata('add_blog',
                     '<div class="badge badge-success mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Article Updated Successfully!</h5></div>'
                     );
-                    redirect(base_url('dashboard'));
+                    redirect(base_url('dashboard/index/1'));
                 } else {
                     $this->session->set_flashdata('add_blog',
                         '<div class="badge badge-danger mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Failed to Update Article!</h5></div>'
                     );
-                    redirect(base_url('dashboard'));
+                    redirect(base_url('dashboard/index/1'));
                 }
             }
                 
@@ -337,12 +337,12 @@ class Dashboard extends CI_Controller{
             $this->session->set_flashdata('add_blog',
             '<div class="badge badge-success mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Blog Deleted Successfully!</h5></div>'
             );
-            redirect(base_url('dashboard'));
+            redirect(base_url('dashboard/index/1'));
         } else {
             $this->session->set_flashdata('add_blog',
                 '<div class="badge badge-danger mb-3 pl-2 pr-2 col-12"><h5 class="text-center" style="color:white">Failed to Delete Blog!</h5></div>'
             );
-            redirect(base_url('dashboard'));
+            redirect(base_url('dashboard/index/1'));
         }
     }
 

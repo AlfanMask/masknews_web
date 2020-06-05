@@ -50,7 +50,8 @@ class Auth extends CI_Controller{
                 'username'  => $username,
                 'email'     => $email,
                 'password'  => $password_1,
-                'role'      => 0 
+                'role'      => 0,
+                'image'     => 'default.png'
             ];
 
             // insert tb_user
