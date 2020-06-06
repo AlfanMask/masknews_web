@@ -5,34 +5,40 @@ class Home extends CI_Controller{
     public function __construct(){
         parent::__construct();
 
-        // loads
+        // load libraries, models, etc
         $this->load->model('model_blog');
         $this->load->model('model_user');
 
     }
     
+    // default function of Home class
     public function index(){
-        // load blogs
+        // get all blogs and blog as headers
         $data['blog_headers']    = $this->model_blog->get_blog_headers('tb_blog');
         $data['blogs']           = $this->model_blog->get_all_blog('tb_blog')->result_array();
+        // get all admins datas
         $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();
 
-        // sort recent posts
+        // === SORT RECENT BLOG POSTS ===
+        // push all blog ids into $recents array
         $recents = array();
         for ($i = 0; $i < sizeof($data['blogs']); $i++) {
           array_push($recents,$data['blogs'][$i]['id']);
         }
         
+        // sort recents post ids descendingly to get newest id first
         rsort($recents);
         
+        // push all blog datas into $data['recents'] array
+        // first load will be 6 posts shown
         $data['recents'] = array();
         for($i = 0; $i < 6; $i++){
           array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recents[$i]));
         }
 
-        // convert obj to array
+        // convert $data['recents'] obj to array
         $data['recents'] = json_decode(json_encode($data['recents']),true);
-        // add each recent post with writer image
+        // add each recent post with their own writer image
         foreach ($user_role_admin_allfield as $admin) {
           for($i = 0; $i < 6; $i++){
             if($data['recents'][$i]['writer'] == $admin['username']){
@@ -43,25 +49,29 @@ class Home extends CI_Controller{
 
         }
 
-        // end of sorting posts
+        // === END OF SORT RECENT BLOG POSTS ===
 
+        // load views
         $this->load->view('templates/header');
         $this->load->view('home',$data);
         $this->load->view('templates/footer');
 
     }
 
+    // load more recent posts with ajax
     public function loadMore($load_more_index){
+        // get all blog and all admins datas
         $data['blogs'] = $this->model_blog->get_all_blog('tb_blog')->result_array();
         $user_role_admin_allfield = (array) $this->model_user->getAdminAllFields('tb_user','1')->result_array();   
 
-        // sort recent posts
+        // === SORT RECENT BLOG POSTS LOADED ===
+        // push all blog ids into $recents array
         $recents = array();
         for ($i = 0; $i < sizeof($data['blogs']); $i++) {
           array_push($recents,$data['blogs'][$i]['id']);
         }
     
-        // get 3 more recent posts        
+        // get 3 more recent posts each triggered
         $length = sizeof($recents);
         $last_index = $length - 1;
         if($load_more_index == 1){
@@ -69,8 +79,6 @@ class Home extends CI_Controller{
         } else {
             $get_first_index = $last_index - (3 + $load_more_index * 3) + 1;    
         }
-
-        // echo json_encode($get_first_index);
 
         $recent_more = array();
         if(($get_first_index - 3) >= 0){
@@ -88,11 +96,8 @@ class Home extends CI_Controller{
         } else {
             echo json_encode('ELSE');
         }        
-        
 
-        // echo json_encode($recent_more);
-        // rsort($recents);
-
+        // add loaded recent datas into $data['recents']
         $data['recents'] = array();
         if(sizeof($recent_more) == 3){
             for($i = 0; $i < 3; $i++){
@@ -108,7 +113,7 @@ class Home extends CI_Controller{
             } 
         }
         
-        // convert obj to array
+        // convert $data['recents'] obj to array
         $data['recents'] = json_decode(json_encode($data['recents']),true);
         // add each recent post with writer image
         foreach ($user_role_admin_allfield as $admin) {
@@ -121,11 +126,12 @@ class Home extends CI_Controller{
 
         }
 
-        // convert array to obj
+        // convert $data['recents'] array to obj
         $data['recents'] = json_decode(json_encode($data['recents']),false);
 
-        // end of sorting posts
+        // === END OF SORT RECENT BLOG POSTS LOADED ===
 
+        // return $data['recents'] into ajax success
         echo json_encode($data['recents']);
 
     }

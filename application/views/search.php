@@ -93,7 +93,8 @@
   }
 
 </style>
-       
+    
+    <!-- Jumbotron -->
     <div class="py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -104,51 +105,63 @@
         </div>
       </div>
     </div>
+    <!-- END OF Jumbotron -->
 
+    <!-- Main Section -->
     <div class="site-section bg-white">
       <div class="container">
+
         <div class="row">
+
+          <!-- Loop $searchedBlogs -->
           <?php foreach($searchedBlogs as $blog) : ?>
             <div class="col-lg-4 mb-4">
               <div class="entry2">
-                <a href="<?= base_url('blog/article/').$blog['id'] ?>"><img src="<?= base_url('uploads/').$blog['image'] ?>" alt="Image" class="img-fluid rounded" style="height:300px;"></a>
-                <div class="excerpt">
-                <!-- category bg color -->
-                <?php if(strtoupper($blog['category']) == 'POLITIC') : ?>
-                  <span class="post-category text-white bg-secondary mb-3"><?= $blog['category'] ?></span>
-                <?php endif; ?>
-                <?php if(strtoupper($blog['category']) == 'TECH') : ?>
-                  <span class="post-category text-white bg-danger mb-3"><?= $blog['category'] ?></span>
-                <?php endif; ?>
-                <?php if(strtoupper($blog['category']) == 'ENTERTAINMENT') : ?>
-                  <span class="post-category text-white bg-success mb-3"><?= $blog['category'] ?></span>
-                <?php endif; ?>
-                <?php if(strtoupper($blog['category']) == 'TRAVEL') : ?>
-                  <span class="post-category text-white bg-primary mb-3"><?= $blog['category'] ?></span>
-                <?php endif; ?>
-                <?php if(strtoupper($blog['category']) == 'SPORT') : ?>
-                  <span class="post-category text-white bg-warning mb-3"><?= $blog['category'] ?></span>
-                <?php endif; ?>
-
-                <h2><a class="post-title" href="<?= base_url('blog/article/').$blog['id'] ?>"><?= $blog['title'] ?></a></h2>
-                <div class="post-meta align-items-center text-left clearfix">
-                  <figure class="author-figure mb-0 mr-3 float-left"><img src="<?=base_url('assets/images/').$blog['writer'].'.jpg' ?>" alt="Image" class="img-fluid" style="height:100%;"></figure>
-                  <span class="d-inline-block mt-1">By <a href="#"><?= $blog['writer'] ?></a></span>
-                  <span>&nbsp;-&nbsp; <?= $blog['date'] ?></span>
-                </div>
                 
+                <!-- post's image -->
+                <a href="<?= base_url('blog/article/').$blog['id'] ?>"><img src="<?= base_url('uploads/').$blog['image'] ?>" alt="Image" class="img-fluid rounded" style="height:300px;"></a>
+                
+                <div class="excerpt">
+                  <!-- category bg color -->
+                  <?php if(strtoupper($blog['category']) == 'POLITIC') : ?>
+                    <span class="post-category text-white bg-secondary mb-3"><?= $blog['category'] ?></span>
+                  <?php endif; ?>
+                  <?php if(strtoupper($blog['category']) == 'TECH') : ?>
+                    <span class="post-category text-white bg-danger mb-3"><?= $blog['category'] ?></span>
+                  <?php endif; ?>
+                  <?php if(strtoupper($blog['category']) == 'ENTERTAINMENT') : ?>
+                    <span class="post-category text-white bg-success mb-3"><?= $blog['category'] ?></span>
+                  <?php endif; ?>
+                  <?php if(strtoupper($blog['category']) == 'TRAVEL') : ?>
+                    <span class="post-category text-white bg-primary mb-3"><?= $blog['category'] ?></span>
+                  <?php endif; ?>
+                  <?php if(strtoupper($blog['category']) == 'SPORT') : ?>
+                    <span class="post-category text-white bg-warning mb-3"><?= $blog['category'] ?></span>
+                  <?php endif; ?>
+
+                  <!-- post's datas -->
+                  <h2><a class="post-title" href="<?= base_url('blog/article/').$blog['id'] ?>"><?= $blog['title'] ?></a></h2>
+                  <div class="post-meta align-items-center text-left clearfix">
+                    <figure class="author-figure mb-0 mr-3 float-left"><img src="<?=base_url('uploads/admins/').$blog['image_writer'] ?>" alt="Image" class="img-fluid" style="height:100%;"></figure>
+                    <span class="d-inline-block mt-1">By <a href="#"><?= $blog['writer'] ?></a></span>
+                    <span>&nbsp;-&nbsp; <?= $blog['date'] ?></span>
+                  </div>
+                  
                   <p class="post-article"><?= substr($blog['article'],0,100).'...' ?></p>
                   <p><a class="post-readmore" href="<?= base_url('blog/article/').$blog['id'] ?>">Read More</a></p>
                 </div>
+
               </div>
             </div>
           <?php endforeach; ?>
           
         </div>
+
+        <!-- bottom line -->
         <div class="row text-center pt-5 border-top">
-          <div class="col-md-12">
-            
-          </div>
+          <div class="col-md-12"></div>
+        </div>
+
       </div>
     </div>
-  </div>
+    <!-- END OF Main Section -->

@@ -30,8 +30,14 @@
   <div class="row justify-content-center">
 
     <div class="col-lg-10 col-md-10">
+
+      <!-- shows message, if any -->
       <?= $this->session->flashdata('add_blog') ?>
+
+      <!-- button: add blog -->
       <a href="<?= base_url('dashboard/add') ?>" class="btn btn-primary btn-add-blog">Add Blog</a>
+      
+      <!-- dashboard: blog datas - with pagination system -->
       <table class="table mt-4">
         <thead>
           <th>Num</th>
@@ -52,6 +58,8 @@
       <!-- Pagination -->
       <nav aria-label="Page navigation example">
         <ul class="pagination">
+
+          <!-- go to first page -->
           <li class="page-item" style="margin: 0px !important;">
             <a class="page-link" href="<?= base_url('dashboard/index/1') ?>" aria-label="Previous" style="border-radius:0 !important;border:none !important;">
               <span aria-hidden="true">&laquo;</span>
@@ -59,6 +67,7 @@
             </a>
           </li>
 
+          <!-- pagination indicators behaviors -->
           <?php if(($idp - 1) <= 0) : ?>
             <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('dashboard/index/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
             <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('dashboard/index/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
@@ -73,6 +82,7 @@
             <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('dashboard/index/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
           <?php endif; ?>
 
+          <!-- go to last page -->
           <li class="page-item" style="margin: 0px !important;">
             <a class="page-link" href="<?= base_url('dashboard/index/').$total_pages ?>" aria-label="Next" style="border-radius:0 !important;border:none !important;">
               <span aria-hidden="true">&raquo;</span>

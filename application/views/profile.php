@@ -52,6 +52,7 @@
 
 <div class="container">
 
+	<!-- shows message, if any -->
 	<?= $this->session->flashdata('update_profile') ?>
 
 	<!-- If Admin -> More Edit Features -->
@@ -59,6 +60,7 @@
 
 		<div class="row justify-content-center mt-4">
 				
+			<!-- photo profile edit -->
 			<div class="col-lg-4 img-section">
 				<?php if($user['image'] == 'default.png') : ?>
 					<img class="mt-4" src="<?= base_url('assets/images/default.png') ?>" style="border-radius:50%;width:250px;display: block;">
@@ -74,17 +76,26 @@
 			
 				<form id="form-profile" action="<?= base_url('profile/updateProfileAdmin') ?>" method="post" enctype="multipart/form-data">
 					
+					<!-- input: id and role (hidden -> used in the controller) -->
 					<input type="hidden" name="id" value="<?= $user['id'] ?>">
 					<input type="hidden" name="role" value="<?= $user['role'] ?>">
+
+					<!-- === Your Account Section === -->
 					<h3 class="mt-4" style="font-weight: bold;text-align: center;margin-bottom: -10px;">Your Account</h3>
+					
+					<!-- input: username -->
 					<div class="form-group">
 				    <label for="username">Username</label>
 				    <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?= $user['username'] ?>">
 				  </div>
+
+				  <!-- input: email -->
 				  <div class="form-group">
 				    <label for="email">Email address</label>
 				    <input type="email" class="form-control" id="email" name="email" placeholder="email@gmail.com" value="<?= $user['email'] ?>">
 				  </div>
+
+				  <!-- input: password -->
 					<div class="form-group">
 				    <label for="password_1">Password</label>
 				    <input type="text" class="form-control" id="password_1" name="password_1" placeholder="example137george$@" value="<?= $user['password'] ?>">
@@ -93,37 +104,51 @@
 				    <label for="password_2">Repeat Password</label>
 				    <input type="text" class="form-control" id="password_2" name="password_2" placeholder="example137george$@" value="<?= $user['password'] ?>">
 				  </div>
+				  <!-- === END OF Your Account Section === -->
 
+				  <!-- === Your Bio Section === -->
 					<h3 class="mt-4" style="font-weight: bold;text-align: center;margin-bottom: -10px;">Your Bio</h3>
 
+					<!-- input: name -->
 					<div class="form-group">
 				    <label for="name">Name</label>
 				    <input type="text" class="form-control" id="name" name="name" placeholder="Write your name here..." value="<?= $user['bio_name'] ?>">
 				  </div>
+
+				  <!-- input: description -->
 				  <div class="form-group">
 						<textarea name="desc" required id="desc" placeholder="Write your description here..." rows="4" style="width:100%"><?= $user['bio_desc'] ?></textarea>
 					</div>
+
+					<!-- input: age -->
 				  <div class="form-group">
 				    <label for="age">Age</label>
 				    <input type="number" class="form-control" id="age" name="age" placeholder="Write your age here..." value="<?= $user['bio_age'] ?>">
 				  </div>
+
+				  <!-- input: address -->
 				  <div class="form-group">
 				    <label for="address">Address</label>
 				    <input type="text" class="form-control" id="address" name="address" placeholder="Write your address here..." value="<?= $user['bio_address'] ?>">
 				  </div>
+
+				  <!-- input: hobby -->
 				  <div class="form-group">
 				    <label for="hobby">Hobby</label>
 				    <input type="text" class="form-control" id="hobby" name="hobby" placeholder="Write your hobby here..." value="<?= $user['bio_hobby'] ?>">
 				  </div>
+				  <!-- === END OF Your Bio Section === -->
 
+				  <!-- button: update profile -->
 				  <button type="submit" class="btn btn-primary btn-submit">Update Profile</button>
 				
 				</form>
+
 			</div>
 
 		</div>
 
-	<!-- if user -->	
+	<!-- if user -> Lest Edit Features -->	
 	<?php else : ?>
 
 		<div class="row justify-content-center">
@@ -131,17 +156,27 @@
 			<div class="col-lg-6 mb-4">
 
 				<form id="form-profile" action="<?= base_url('profile/updateProfileUser') ?>" method="post">
+					
+					<!-- input: id and role (hidden -> used in the controller) -->
 					<input type="hidden" name="id" value="<?= $user['id'] ?>">
 					<input type="hidden" name="role" value="<?= $user['role'] ?>">
+					
+					<!-- === Your Account Section === -->
 					<h3 class="mt-4" style="font-weight: bold;text-align: center;margin-bottom: -10px;">Your Account</h3>
+					
+					<!-- input: username -->
 					<div class="form-group">
 				    <label for="username">Username</label>
 				    <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?= $user['username'] ?>">
 				  </div>
+
+				  <!-- input: email -->
 				  <div class="form-group">
 				    <label for="email">Email address</label>
 				    <input type="email" class="form-control" id="email" name="email" placeholder="email@gmail.com" value="<?= $user['email'] ?>">
 				  </div>
+
+				  <!-- input: password -->
 				  <div class="form-group">
 				    <label for="password_1">Password</label>
 				    <input type="text" class="form-control" id="password_1" name="password_1" placeholder="example137george$@" value="<?= $user['password'] ?>">
@@ -150,15 +185,17 @@
 				    <label for="password_2">Repeat Password</label>
 				    <input type="text" class="form-control" id="password_2" name="password_2" placeholder="example137george$@" value="<?= $user['password'] ?>">
 				  </div>
+				  <!-- === END OF Your Account Section === -->
+
+				  <!-- button: update profile -->
 				  <button type="submit" class="btn btn-primary btn-submit">Update Profile</button>
-				</form>
 				
+				</form>
+
 			</div>
 
 		</div>
 
 	<?php endif; ?>
-
-	
 
 </div>

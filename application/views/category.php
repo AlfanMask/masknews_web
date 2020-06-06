@@ -93,7 +93,8 @@
   }
 
 </style>
-       
+    
+    <!-- Jumbotron -->
     <div class="py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -126,10 +127,16 @@
         </div>
       </div>
     </div>
+    <!-- END OF Jumbotron -->
 
+    <!-- Main Section -->
     <div class="site-section bg-white">
       <div class="container">
+        
+        <!-- post section -->
         <div class="row">
+
+          <!-- Loop $blogs_pagination and shows each post with pagination system -->
           <?php foreach($blogs_pagination as $blog) : ?>
             <div class="col-lg-4 mb-4">
               <div class="entry2">
@@ -167,51 +174,58 @@
           <?php endforeach; ?>
           
         </div>
+        <!-- END OF post section -->
         
         <!-- Pagination -->
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" style="margin: 0px !important;">
-            <a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/1') ?>" aria-label="Previous" style="border-radius:0 !important;border:none !important;">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
 
-          <?php if($total_pages == 1) : ?>
-            <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/1') ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
-          <?php elseif($total_pages == 2) : ?>
-            <?php if($idp == 1) : ?>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
-            <?php elseif($idp == 2) : ?>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
-            <?php endif; ?>
-          <?php else : ?>
-            <?php if(($idp - 1) <= 0) : ?>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 2) ?>" style="border-radius:0 !important;"><?= $idp + 2 ?></a></li>
-            <?php elseif(($idp + 1) > $total_pages) : ?>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 2) ?>" style="border-radius:0 !important;"><?= $idp - 2 ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+            <!-- go to first page -->
+            <li class="page-item" style="margin: 0px !important;">
+              <a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/1') ?>" aria-label="Previous" style="border-radius:0 !important;border:none !important;">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+
+            <!-- pagination indicators behaviors -->
+            <?php if($total_pages == 1) : ?>
+              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/1') ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+            <?php elseif($total_pages == 2) : ?>
+              <?php if($idp == 1) : ?>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
+              <?php elseif($idp == 2) : ?>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+              <?php endif; ?>
             <?php else : ?>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
-              <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
+              <?php if(($idp - 1) <= 0) : ?>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 2) ?>" style="border-radius:0 !important;"><?= $idp + 2 ?></a></li>
+              <?php elseif(($idp + 1) > $total_pages) : ?>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 2) ?>" style="border-radius:0 !important;"><?= $idp - 2 ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+              <?php else : ?>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp - 1) ?>" style="border-radius:0 !important;"><?= $idp - 1 ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link bg-primary text-white" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$idp ?>" style="border-radius:0 !important;"><?= $idp ?></a></li>
+                <li class="page-item" style="margin: 0px !important;"><a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').($idp + 1) ?>" style="border-radius:0 !important;"><?= $idp + 1 ?></a></li>
+              <?php endif; ?>
             <?php endif; ?>
-          <?php endif; ?>
 
-          <li class="page-item" style="margin: 0px !important;">
-            <a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$total_pages ?>" aria-label="Next" style="border-radius:0 !important;border:none !important;">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+            <!-- go to last page -->
+            <li class="page-item" style="margin: 0px !important;">
+              <a class="page-link" href="<?= base_url('category/'.strtolower($blogs_pagination[0]['category']).'/').$total_pages ?>" aria-label="Next" style="border-radius:0 !important;border:none !important;">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+            
+          </ul>
+        </nav>
 
+      </div>
     </div>
-  </div>
+    <!-- END OF Main Section -->
