@@ -104,23 +104,23 @@
             <span class="category-span">Category</span>
             <?php if(strtolower($blogs[0]['category']) == 'politic') : ?>
               <h3 class="category-title">Politic</h3>
-              <p class="category-desc">Berbagai berita politik panas dari seluruh penjuru dunia. Baca dan tetap up to date.</p>
+              <p class="category-desc">Various of hot political news from all corners in the world. Read them and stay up to date.</p>
             <?php endif; ?>
             <?php if(strtolower($blogs[0]['category']) == 'tech') : ?>
               <h3 class="category-title">Tech</h3>
-              <p class="category-desc">Berbagai berita teknologi terbaru, termodern, sebuah pencapaian dari seluruh penjuru dunia. Baca dan tetap up to date.</p>
+              <p class="category-desc">Various of hot technological news from all corners in the world. Read them and stay up to date.</p>
             <?php endif; ?>
             <?php if(strtolower($blogs[0]['category']) == 'entertainment') : ?>
               <h3 class="category-title">Entertainment</h3>
-              <p class="category-desc">Berbagai berita entertainment hangat yang menjadi perbincangan saat ini dari seluruh penjuru dunia. Baca dan tetap up to date.</p>
+              <p class="category-desc">Various of hot entertainment news from all corners in the world. Read them and stay up to date.</p>
             <?php endif; ?>
             <?php if(strtolower($blogs[0]['category']) == 'travel') : ?>
               <h3 class="category-title">Travel</h3>
-              <p class="category-desc">Berbagai berita travel perjalanan unik, indah, terbaru dari seluruh penjuru dunia. Baca dan tetap up to date.</p>
+              <p class="category-desc">Various of hot travel news from all corners in the world. Read them and stay up to date.</p>
             <?php endif; ?>
             <?php if(strtolower($blogs[0]['category']) == 'sport') : ?>
               <h3 class="category-title">Sport</h3>
-              <p class="category-desc">Berbagai berita olahraga terbaru, terpanas, berbagai liga dari seluruh penjuru dunia. Baca dan tetap up to date.</p>
+              <p class="category-desc">Various of hot sport news from all corners in the world. Read them and stay up to date.</p>
             <?php endif; ?>
 
           </div>

@@ -100,7 +100,13 @@
         <div class="row">
           <div class="col-md-9 category">
               <h3 class="category-title">Search Blog</h3>
-              <p class="category-desc"><?= sizeof($searchedBlogs); ?> blog ditemukan dengan menggunakan kata kunci <b style="color:#000; font-weight: 700"><?= $this->input->get('search'); ?></b></p>
+
+              <?php if(sizeof($searchedBlogs) == 1) : ?>
+                <p class="category-desc"><?= sizeof($searchedBlogs); ?> blog found with a keyword <b style="color:#000; font-weight: 700"><?= $this->input->get('search'); ?></b></p>
+              <?php else : ?>
+                <p class="category-desc"><?= sizeof($searchedBlogs); ?> blogs found with a keyword <b style="color:#000; font-weight: 700"><?= $this->input->get('search'); ?></b></p>
+              <?php endif; ?>
+              
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@
         <div class="row mb-5">
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">About Us</h3>
-            <p>Mask Blog adalah sebuah perusahaan yang bergerak di bidang jurnalistik yang akan memberikan berita up to date dari seluruh belahan dunia. Berbagai jenis berita kami sediakan untuk menemani hari santai Anda.</p>
+            <p>Mask Blog is a company engaged in the field of journalism that will provide you up-to-date news from all kind of parts in the world. We provide various types of news to relaxing your day.</p>
           </div>
           <div class="col-md-3 ml-auto">
             <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
