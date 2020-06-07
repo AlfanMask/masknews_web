@@ -196,7 +196,7 @@ class Profile extends CI_Controller{
 				'image'				=> 'default.png',
 				'bio_name'		=> '',
 				'bio_desc'		=> '',
-				'bio_age'			=> '',
+				'bio_age'			=> 0,
 				'bio_address'	=> '',
 				'bio_hobby'		=> ''
 			];
