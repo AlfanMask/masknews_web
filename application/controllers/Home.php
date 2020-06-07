@@ -93,25 +93,23 @@ class Home extends CI_Controller{
             for($i = $get_first_index - 1; $i > (($get_first_index - 1) - 1); $i--){
                 array_push($recent_more,$recents[$i]);
             } 
-        } else {
-            echo json_encode('ELSE');
         }        
 
         // add loaded recent datas into $data['recents']
         $data['recents'] = array();
         if(sizeof($recent_more) == 3){
-            for($i = 0; $i < 3; $i++){
-                array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
-            } 
+          for($i = 0; $i < 3; $i++){
+              array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
+          } 
         } else if (sizeof($recent_more) == 2) {
-            for($i = 0; $i < 2; $i++){
-                array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
-            }
+          for($i = 0; $i < 2; $i++){
+              array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
+          }
         } else if (sizeof($recent_more) == 1) {
-            for($i = 0; $i < 1; $i++){
-                array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
-            } 
-        }
+          for($i = 0; $i < 1; $i++){
+              array_push($data['recents'],$this->model_blog->getRecentBlog('tb_blog',$recent_more[$i]));
+          }
+        } 
         
         // convert $data['recents'] obj to array
         $data['recents'] = json_decode(json_encode($data['recents']),true);
@@ -128,11 +126,14 @@ class Home extends CI_Controller{
 
         // convert $data['recents'] array to obj
         $data['recents'] = json_decode(json_encode($data['recents']),false);
-
         // === END OF SORT RECENT BLOG POSTS LOADED ===
 
-        // return $data['recents'] into ajax success
-        echo json_encode($data['recents']);
+        if(empty($recent_more)){
+          echo json_encode('no_more_data');
+        } else {
+          // return $data['recents'] into ajax success
+          echo json_encode($data['recents']);
+        }
 
     }
 

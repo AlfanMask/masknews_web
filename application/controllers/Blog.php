@@ -162,7 +162,7 @@ class Blog extends CI_Controller{
 
     }
 
-    // add parent comment with ajax
+    // add child comment with ajax
     public function addChildComment(){
       // get input datas
       $komen_blog   = $this->input->post('komen_blog');

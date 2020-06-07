@@ -293,94 +293,102 @@
       url: '<?= base_url('home/loadMore/') ?>' + load_more_index,
       dataType: 'json',
       success: function(data){
+
+        // if no more recent data
+        if(data == 'no_more_data'){
+          $('#load-more').html('No More Posts');
+          $('#load-more').attr('disabled',true);
         
-        // set #load-more text (from: loading) to "load more"
-        $('#load-more').html('Load More');
-
-        // category color for each posts loaded
-        let category_color_0;
-        let category_color_1;
-        let category_color_2;
-
-        // set category badge color
-        if(data[0] != null){
-          if(data[0].category.toUpperCase() == 'POLITIC'){
-            category_color_0 = 'bg-secondary';
-          } else if(data[0].category.toUpperCase() == 'TECH'){
-            category_color_0 = 'bg-danger';
-          } else if(data[0].category.toUpperCase() == 'ENTERTAINMENT'){
-            category_color_0 = 'bg-success';
-          } else if(data[0].category.toUpperCase() == 'TRAVEL'){
-            category_color_0 = 'bg-primary';
-          } else if(data[0].category.toUpperCase() == 'SPORT'){
-            category_color_0 = 'bg-warning';
-          }
-        }
-
-        if(data[1] != null) {
-          if(data[1].category.toUpperCase() == 'POLITIC'){
-            category_color_1 = 'bg-secondary';
-          } else if(data[1].category.toUpperCase() == 'TECH'){
-            category_color_1 = 'bg-danger';
-          } else if(data[1].category.toUpperCase() == 'ENTERTAINMENT'){
-            category_color_1 = 'bg-success';
-          } else if(data[1].category.toUpperCase() == 'TRAVEL'){
-            category_color_1 = 'bg-primary';
-          } else if(data[1].category.toUpperCase() == 'SPORT'){
-            category_color_1 = 'bg-warning';
-          }
-        }
-
-        if(data[2] != null){
-          if(data[2].category.toUpperCase() == 'POLITIC'){
-            category_color_2 = 'bg-secondary';
-          } else if(data[2].category.toUpperCase() == 'TECH'){
-            category_color_2 = 'bg-danger';
-          } else if(data[2].category.toUpperCase() == 'ENTERTAINMENT'){
-            category_color_2 = 'bg-success';
-          } else if(data[2].category.toUpperCase() == 'TRAVEL'){
-            category_color_2 = 'bg-primary';
-          } else if(data[2].category.toUpperCase() == 'SPORT'){
-            category_color_2 = 'bg-warning';
-          }
-        }
-        // END OF set category badge color
-
-        // if click loadMore button for the firts time since home page loaded
-        if(load_more_index == 1){
-          // if total posts loaded is 3 -> show 3 posts, if total posts loaded is 2 -> show 2 posts, and if total post loaded is 1 -> show 1 post          
-          if(data.length == 3){
-            $('.recent-section').after(
-            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '"><img src="<?= base_url('uploads/')?>' + data[2].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_2 + ' mb-3">' + data[2].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[2].id + '">' + data[2].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[2].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[2].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[2].date + '</span></div><p class="recent-article">' + data[2].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '">Read More</a></p></div></div></div></div>');
-          } else if (data.length == 2){
-            $('.recent-section').after(
-          '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div></div>');
-          } else if (data.length == 1){
-            $('.recent-section').after(
-            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div></div>');
-          }
-          
-        // if click loadMore button not for the firts time since home page loaded
         } else {
-          // if total posts loaded is 3 -> show 3 posts, if total posts loaded is 2 -> show 2 posts, and if total post loaded is 1 -> show 1 post
-          if(data.length == 3){
-            $('.recent-section-' + (load_more_index-1)).after(
-            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '"><img src="<?= base_url('uploads/')?>' + data[2].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_2 + ' mb-3">' + data[2].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[2].id + '">' + data[2].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[2].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[2].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[2].date + '</span></div><p class="recent-article">' + data[2].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '">Read More</a></p></div></div></div></div>');
-          } else if (data.length == 2){
-            $('.recent-section-' + (load_more_index-1)).after(
-          '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div></div>');
-          } else if (data.length == 1){
-            $('.recent-section-' + (load_more_index-1)).after(
-            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div></div>');
+
+          // set #load-more text (from: loading) to "load more"
+          $('#load-more').html('Load More');
+
+          // category color for each posts loaded
+          let category_color_0;
+          let category_color_1;
+          let category_color_2;
+
+          // set category badge color
+          if(data[0] != null){
+            if(data[0].category.toUpperCase() == 'POLITIC'){
+              category_color_0 = 'bg-secondary';
+            } else if(data[0].category.toUpperCase() == 'TECH'){
+              category_color_0 = 'bg-danger';
+            } else if(data[0].category.toUpperCase() == 'ENTERTAINMENT'){
+              category_color_0 = 'bg-success';
+            } else if(data[0].category.toUpperCase() == 'TRAVEL'){
+              category_color_0 = 'bg-primary';
+            } else if(data[0].category.toUpperCase() == 'SPORT'){
+              category_color_0 = 'bg-warning';
+            }
           }
-          
-        } 
 
-        // increment load_more_index by 1 each it success load more posts
-        load_more_index++;
+          if(data[1] != null) {
+            if(data[1].category.toUpperCase() == 'POLITIC'){
+              category_color_1 = 'bg-secondary';
+            } else if(data[1].category.toUpperCase() == 'TECH'){
+              category_color_1 = 'bg-danger';
+            } else if(data[1].category.toUpperCase() == 'ENTERTAINMENT'){
+              category_color_1 = 'bg-success';
+            } else if(data[1].category.toUpperCase() == 'TRAVEL'){
+              category_color_1 = 'bg-primary';
+            } else if(data[1].category.toUpperCase() == 'SPORT'){
+              category_color_1 = 'bg-warning';
+            }
+          }
 
-        }
+          if(data[2] != null){
+            if(data[2].category.toUpperCase() == 'POLITIC'){
+              category_color_2 = 'bg-secondary';
+            } else if(data[2].category.toUpperCase() == 'TECH'){
+              category_color_2 = 'bg-danger';
+            } else if(data[2].category.toUpperCase() == 'ENTERTAINMENT'){
+              category_color_2 = 'bg-success';
+            } else if(data[2].category.toUpperCase() == 'TRAVEL'){
+              category_color_2 = 'bg-primary';
+            } else if(data[2].category.toUpperCase() == 'SPORT'){
+              category_color_2 = 'bg-warning';
+            }
+          }
+          // END OF set category badge color
 
+          // if click loadMore button for the firts time since home page loaded
+          if(load_more_index == 1){
+            // if total posts loaded is 3 -> show 3 posts, if total posts loaded is 2 -> show 2 posts, and if total post loaded is 1 -> show 1 post          
+            if(data.length == 3){
+              $('.recent-section').after(
+              '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '"><img src="<?= base_url('uploads/')?>' + data[2].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_2 + ' mb-3">' + data[2].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[2].id + '">' + data[2].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[2].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[2].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[2].date + '</span></div><p class="recent-article">' + data[2].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '">Read More</a></p></div></div></div></div>');
+            } else if (data.length == 2){
+              $('.recent-section').after(
+            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div></div>');
+            } else if (data.length == 1){
+              $('.recent-section').after(
+              '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div></div>');
+            }
+            
+          // if click loadMore button not for the firts time since home page loaded
+          } else {
+            // if total posts loaded is 3 -> show 3 posts, if total posts loaded is 2 -> show 2 posts, and if total post loaded is 1 -> show 1 post
+            if(data.length == 3){
+              $('.recent-section-' + (load_more_index-1)).after(
+              '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '"><img src="<?= base_url('uploads/')?>' + data[2].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_2 + ' mb-3">' + data[2].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[2].id + '">' + data[2].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[2].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[2].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[2].date + '</span></div><p class="recent-article">' + data[2].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[2].id + '">Read More</a></p></div></div></div></div>');
+            } else if (data.length == 2){
+              $('.recent-section-' + (load_more_index-1)).after(
+            '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '"><img src="<?= base_url('uploads/')?>' + data[1].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_1 + ' mb-3">' + data[1].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[1].id + '">' + data[1].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[1].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[1].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[1].date + '</span></div><p class="recent-article">' + data[1].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[1].id + '">Read More</a></p></div></div></div></div>');
+            } else if (data.length == 1){
+              $('.recent-section-' + (load_more_index-1)).after(
+              '<div class="row recent-section-' + load_more_index + '"><div class="col-lg-4 mb-4"><div class="entry2"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '"><img src="<?= base_url('uploads/')?>' + data[0].image + '" alt="Image" class="img-fluid rounded"></a><div class="excerpt"><span class="post-category text-white ' + category_color_0 + ' mb-3">' + data[0].category + '</span><h2 class="recent-title"><a href="<?= base_url('blog/article/')?>' + data[0].id + '">' + data[0].title + '</a></h2><div class="post-meta align-items-center text-left clearfix"><figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/admins/'+ data[0].image_writer +'" alt="Image" class="img-fluid" style="height:100%;"></figure><span class="d-inline-block mt-1">By <a href="#">' + data[0].writer + '</a></span><span>&nbsp;-&nbsp; ' + data[0].date + '</span></div><p class="recent-article">' + data[0].article.substring(0,100) + '...' + '</p><p class="recent-readmore"><a href="<?= base_url('blog/article/') ?>' + data[0].id + '">Read More</a></p></div></div></div></div>');
+            }
+            
+          } 
+
+          // increment load_more_index by 1 each it success load more posts
+          load_more_index++;
+
+          }
+
+        } // END OF if more recent data
 
     });
 
