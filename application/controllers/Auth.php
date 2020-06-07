@@ -89,7 +89,12 @@ class Auth extends CI_Controller{
                 'email'     => $email,
                 'password'  => $password_1,
                 'role'      => 0,
-                'image'     => 'default.png'
+                'image'     => 'default.png',
+                'bio_name'  => '',
+                'bio_desc'  => '',
+                'bio_age'   => 0,
+                'bio_address'=> '',
+                'bio_hobby' => ''
             ];
 
             // insert data into tb_user
